@@ -8,7 +8,7 @@ const nodeInit: NodeInitializer = (RED): void => {
     config: TransformTextNodeDef
   ): void {
     RED.nodes.createNode(this, config);
-
+    
     switch (config.operation) {
       case TransformTextOperation.UpperCase: {
         this.on("input", (msg, send, done) => {

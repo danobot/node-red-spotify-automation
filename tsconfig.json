@@ -3,7 +3,7 @@
     "target": "ES2018",
     "module": "commonjs",
     "lib": ["es2018", "esnext.asynciterable", "dom"],
-    "allowJs": false,
+    "allowJs": true,
     "noEmitOnError": true,
     "sourceMap": true,
     "outDir": "dist",
@@ -13,8 +13,8 @@
     "importHelpers": false,
     "preserveWatchOutput": true,
 
-    "strict": true,
-    "noImplicitAny": true,
+    "strict": false,
+    "noImplicitAny": false,
     "strictNullChecks": true,
 
     "noUnusedLocals": false,

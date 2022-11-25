@@ -1,14 +1,7 @@
-export interface Credeintials {
-  // node options
-  clientId: string;
-  clientSecret: string;
-  accessToken: string;
-  refreshToken: string;
-  expireTime: number;
-}
+import { SpotifyApiCredentials } from "../../shared/types";
 export interface SpotifyOptions {
   // node options
-  credentials: Credeintials;
+  credentials: SpotifyApiCredentials;
   auth: any;
   api: any;
 }

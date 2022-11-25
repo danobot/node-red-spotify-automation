@@ -20,11 +20,15 @@
   "license": "MIT",
   "node-red": {
     "nodes": {
-      "transform-text": "./dist/nodes/transform-text/transform-text.js"
+      "transform-text": "./dist/nodes/transform-text/transform-text.js",
+      "get-saved-tracks": "./dist/nodes/get-saved-tracks/get-saved-tracks.js",
+      "spotify": "./dist/nodes/spotify/spotify.js",
+      "authorize": "./dist/nodes/authorize/authorize.js"
     }
   },
   "dependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.0.0",
@@ -34,6 +38,7 @@
     "@types/node-red": "^1.1.1",
     "@types/node-red-node-test-helper": "^0.2.1",
     "@types/sinon": "^9.0.9",
+    "@types/spotify-web-api-node": "^5.0.7",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
