@@ -1,0 +1,8 @@
+node_modules
+*.map
+lib/*.js
+test/*.js
+*.tgz
+*.log
+dist
+.node-version

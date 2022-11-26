@@ -1,0 +1,27 @@
+{
+  "cache" : {
+    "label" : {
+      "cache": "Cache",
+      "defaultTtl" : "Default TTL",
+      "checkPeriod" : "Check Interval",
+      "keyProperty" : "Key Property",
+      "valueProperty" : "Value Property",
+      "ttlProperty" : "TTL Property",
+      "useString" : "Use string payload",
+      "cacheMissRouting": "Route to the second port on a cache miss"
+    },
+    "placeholder" : {
+      "keyProperty" : "default: topic",
+      "valueProperty" : "default: payload",
+      "ttlProperty" : "(optional)",
+      "checkPeriod" : "(in seconds, 0=never checked)",
+      "defaultTtl" : "(in seconds, empty here for unlimited TTL)"
+    },
+    "status": {
+      "keys": "__n__"
+    },
+    "errors" : {
+      "unknown" : "[NodeCache] Unknown Error (__error__)"
+    }
+  }
+}

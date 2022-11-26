@@ -1,0 +1,158 @@
+[
+    {
+        "id": "6675fe56.38d0d8",
+        "type": "debug",
+        "z": "824dab07.1cfb3",
+        "name": "Cache Miss!",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 590,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "e46b1cee.89b1d8",
+        "type": "inject",
+        "z": "824dab07.1cfb3",
+        "name": "Dump all",
+        "topic": "",
+        "payload": "{\"dump\":true}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 160,
+        "y": 80,
+        "wires": [
+            [
+                "51cace14.0f32c8"
+            ]
+        ]
+    },
+    {
+        "id": "51cace14.0f32c8",
+        "type": "Cache in",
+        "z": "824dab07.1cfb3",
+        "name": "",
+        "cache": "9a2a6fe9.ad297",
+        "keyType": "msg",
+        "keyProperty": "topic",
+        "valueType": "msg",
+        "valueProperty": "payload",
+        "useString": false,
+        "outputs": 2,
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "d33ce6db.81781"
+            ],
+            [
+                "6675fe56.38d0d8"
+            ]
+        ]
+    },
+    {
+        "id": "d33ce6db.81781",
+        "type": "debug",
+        "z": "824dab07.1cfb3",
+        "name": "Cache Hit!",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 590,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8a636b27.8048a",
+        "type": "inject",
+        "z": "824dab07.1cfb3",
+        "name": "Store Timestamp",
+        "topic": "timestamp",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "a4fb7499.3bd4"
+            ]
+        ]
+    },
+    {
+        "id": "a4fb7499.3bd4",
+        "type": "Cache out",
+        "z": "824dab07.1cfb3",
+        "name": "",
+        "cache": "9a2a6fe9.ad297",
+        "keyType": "msg",
+        "keyProperty": "topic",
+        "valueType": "msg",
+        "valueProperty": "payload",
+        "ttlType": "msg",
+        "ttlProperty": "",
+        "useString": false,
+        "x": 380,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "aba84e5b.0f6ed8",
+        "type": "inject",
+        "z": "824dab07.1cfb3",
+        "name": "Store Timestamp2",
+        "topic": "timestamp2",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 190,
+        "y": 320,
+        "wires": [
+            [
+                "a4fb7499.3bd4"
+            ]
+        ]
+    },
+    {
+        "id": "cecf39c6.20a25",
+        "type": "inject",
+        "z": "824dab07.1cfb3",
+        "name": "Retrieve Timestamp",
+        "topic": "timestamp",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "51cace14.0f32c8"
+            ]
+        ]
+    },
+    {
+        "id": "9a2a6fe9.ad297",
+        "type": "Cache",
+        "z": "",
+        "name": "abcd",
+        "defaultTtl": "10",
+        "checkPeriod": "30"
+    }
+]
