@@ -50,7 +50,9 @@
   },
   "node-red": {
     "nodes": {
-      "cache": "dist/cache.js"
+      "cache": "dist/cache/cache.js",
+      "spotify": "dist/spotify/spotify.js",
+      "authorize": "dist/authorize/authorize.js"
     }
   }
 }
