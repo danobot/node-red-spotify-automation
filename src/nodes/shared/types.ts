@@ -9,5 +9,5 @@ export interface SpotifyApiCredentials {
     expireTime: number;
     csrfToken: string;
     name: string;
-    callback: string | string[] | ParsedQs | ParsedQs[];
+    callback: string;
   }

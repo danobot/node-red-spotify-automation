@@ -21,9 +21,7 @@
   "node-red": {
     "nodes": {
       "transform-text": "./dist/nodes/transform-text/transform-text.js",
-      "get-saved-tracks": "./dist/nodes/get-saved-tracks/get-saved-tracks.js",
-      "spotify": "./dist/nodes/spotify/spotify.js",
-      "authorize": "./dist/nodes/authorize/authorize.js"
+      "cache": "./dist/nodes/cache/cache.js"
     }
   },
   "dependencies": {

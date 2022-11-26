@@ -52,7 +52,7 @@
     "nodes": {
       "cache": "dist/cache/cache.js",
       "spotify": "dist/spotify/spotify.js",
-      "authorize": "dist/authorize/authorize.js"
+      "spotify-auth": "dist/authorize/authorize.js"
     }
   }
 }
