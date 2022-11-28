@@ -18,7 +18,7 @@ module.exports = function (RED) {
             
             let buffer = [];
             let artistMap = {};
-            let inputList = msg.payload.slice(0,20).reverse();
+            let inputList = msg.payload.reverse();
             let outputList = []
             
             const resetTrackARtists = (track) => {
