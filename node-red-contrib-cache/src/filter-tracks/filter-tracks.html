@@ -1,0 +1,59 @@
+<script type="text/javascript">
+    RED.nodes.registerType('filter-tracks', {
+        category: 'function',
+        color: '#B8CDF8',
+        icon: "font-awesome/fa-filter",
+        defaults: {
+            name: { value: '' },
+            filterList: { value: '' },
+            
+        },
+        inputs: 1,
+        outputs: 1,
+        label: 'Filter Tracks',
+        oneditprepare: function () {
+            const node = this;
+            const selectAPI = $('#node-input-context');
+            console.log(Object.keys(this.context().global))
+
+            // selectAPI.append(Object.keys(this.context().global).map(function(d) {
+            //     console.log(d)
+            //     return $('<option></option>').attr('value', d).attr('selected', node.filterList === d).text(d).wrap('<p/>').parent().html();
+            // }).join(""))
+        }
+        
+    });
+</script>
+<script type="text/x-red" data-template-name="filter-tracks">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-context"><i class="icon-tag"></i> Filter (Context Name)</label>
+        <select type="text" id="node-input-context">
+        </select>
+    </div>
+</script>
+<script type="text/x-red" data-help-name="filter-tracks">
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>params <span class="property-type">array</span></dt>
+        <dd>Array to be randomly shuffled.</dd>
+    </dl>
+<dl class="message-properties">
+        <dt>params <span class="property-type">array</span></dt>
+        <dd>Array to be randomly shuffled.</dd>
+    </dl>
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Standard output
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">Object</span></dt>
+                 <dd>Shuffled array</dd>
+             </dl>
+         </li>
+         
+     </ol>
+
+ </script>

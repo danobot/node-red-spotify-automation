@@ -7,7 +7,6 @@ module.exports = function (RED) {
             const ARTIST_SEPARATION = 4;
 
             const increase = (artistMapParam) => {
-                //console.log(artistMapParam)
                 Object.keys(artistMapParam).forEach(a => artistMapParam[a] = ++artistMapParam[a])
             }
             
@@ -23,16 +22,13 @@ module.exports = function (RED) {
             
             const resetTrackARtists = (track) => {
                 track.track.artists.forEach(artist => {
-                    //console.log("setting artist to 0: ", artist.name)
                     artistMap[artist.id] = 0;
                 });
             }
             
             
             inputList.map(track => {
-                //console.log(track)
                 track.track.artists.map(artist => {
-                    //console.log(artist.id)
                     if (!Object.keys(artistMap).includes(artist.id)) {
                         artistMap[artist.id] = ARTIST_SEPARATION + 1;
                     }
@@ -40,20 +36,17 @@ module.exports = function (RED) {
                 })
             
             })
-            console.log("Artist Map Length", Object.keys(artistMap).length)
-            //console.log("Artist Map", artistMap)
-            // algo
+            //console.log("Artist Map Length", Object.keys(artistMap).length)
             console.log("Playlist length: ", inputList.length)
             const wasRepeated = (a) => {
                 let r = artistMap[a.id] <= ARTIST_SEPARATION
-                console.log("\t\tGap too close?: " + artistMap[a.id] + "<=" + ARTIST_SEPARATION + "="+r)
+                //console.log("\t\tGap too close?: " + artistMap[a.id] + "<=" + ARTIST_SEPARATION + "="+r)
                 return r;
             }
             
             const trackArtistWasRepeated = (t) => {
                 return t.track.artists.some(wasRepeated);
             }
-            //return msg;
             while (inputList.length > 0) {
                 let currentTrack;
                 let hasRepeated;
@@ -94,13 +87,13 @@ module.exports = function (RED) {
             
                 
             }
-            console.log("Buffer Contents")
-            buffer.map(t => console.log(printTrack(t)))
-            console.log("End Buffer")
+            //console.log("Buffer Contents")
+            //buffer.map(t => console.log(printTrack(t)))
+            //console.log("End Buffer")
             //console.log("Output List")
-            outputList.map(t=> console.log(printTrack(t)))
-            msg.payload = [];
-            return msg
+            //outputList.map(t=> console.log(printTrack(t)))
+            msg.payload = outputList;
+            this.send(msg);
         });
        
     }
