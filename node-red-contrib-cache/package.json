@@ -51,6 +51,7 @@
   "node-red": {
     "nodes": {
       "cache": "dist/cache/cache.js",
+      "shuffle": "dist/shuffle/shuffle.js",
       "spotify": "dist/spotify/spotify.js",
       "spotify-auth": "dist/authorize/authorize.js"
     }
