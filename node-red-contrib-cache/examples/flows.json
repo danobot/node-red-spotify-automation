@@ -1,0 +1,345 @@
+[
+    {
+        "id": "39f07c67e5779d79",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a151fccbb41d7f22",
+        "type": "shuffle",
+        "z": "39f07c67e5779d79",
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "36ca6b044a16ac8c"
+            ]
+        ]
+    },
+    {
+        "id": "528674a4dc1abd1e",
+        "type": "debug",
+        "z": "39f07c67e5779d79",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "36ca6b044a16ac8c",
+        "type": "artist-separation",
+        "z": "39f07c67e5779d79",
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "f5637d5916414973",
+                "90111c30c088632a",
+                "528674a4dc1abd1e"
+            ]
+        ]
+    },
+    {
+        "id": "3aed57bce2743027",
+        "type": "filter-tracks",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "keyy": "recentlyShuffled",
+        "x": 650,
+        "y": 60,
+        "wires": [
+            [
+                "02bff1951867de58"
+            ]
+        ]
+    },
+    {
+        "id": "f5637d5916414973",
+        "type": "append-context",
+        "z": "39f07c67e5779d79",
+        "name": "Add to Song Buffer",
+        "key": "recentlyShuffled",
+        "x": 990,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "300560d4c2095e9e",
+        "type": "use-context",
+        "z": "39f07c67e5779d79",
+        "name": "Saved Tracks",
+        "key": "mySavedTracks",
+        "x": 420,
+        "y": 60,
+        "wires": [
+            [
+                "3aed57bce2743027"
+            ]
+        ]
+    },
+    {
+        "id": "0260bd56146bef65",
+        "type": "inject",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 03 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "300560d4c2095e9e"
+            ]
+        ]
+    },
+    {
+        "id": "0cdcd098fa6072ed",
+        "type": "inject",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "00 02 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "fcbf239151eb2f8a"
+            ]
+        ]
+    },
+    {
+        "id": "c99746d25b73d66c",
+        "type": "sample",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "count": "60",
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "a151fccbb41d7f22"
+            ]
+        ]
+    },
+    {
+        "id": "90111c30c088632a",
+        "type": "playlist-save",
+        "z": "39f07c67e5779d79",
+        "name": "Daily Real Shuffle",
+        "auth": "f794cf6b2d503e68",
+        "playlist": "3mD7OG9CuawMnaP4b5h52o",
+        "x": 990,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fcbf239151eb2f8a",
+        "type": "spotify",
+        "z": "39f07c67e5779d79",
+        "name": "GetTracks",
+        "auth": "f794cf6b2d503e68",
+        "api": "getMySavedTracks",
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "3f680b2221f245c5"
+            ]
+        ]
+    },
+    {
+        "id": "3f680b2221f245c5",
+        "type": "change",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mySavedTracks",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79fd7ba19d529fe5",
+        "type": "switch",
+        "z": "39f07c67e5779d79",
+        "name": "If running out of songs",
+        "property": "payload.length",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "60",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "60",
+                "vt": "num"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "c99746d25b73d66c"
+            ],
+            [
+                "37ad8f987ab40478"
+            ]
+        ]
+    },
+    {
+        "id": "37ad8f987ab40478",
+        "type": "function",
+        "z": "39f07c67e5779d79",
+        "name": "Reset Recently Shuffled Cache",
+        "func": "global.set(\"recentlyShuffled\", [])\nnode.log(\"Clearing shuffle cache\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "300560d4c2095e9e"
+            ]
+        ]
+    },
+    {
+        "id": "9de01bc4754de47e",
+        "type": "inject",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "00 02 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "befa4c1d3504c88d"
+            ]
+        ]
+    },
+    {
+        "id": "befa4c1d3504c88d",
+        "type": "spotify",
+        "z": "39f07c67e5779d79",
+        "name": "Get Top Tracks",
+        "auth": "f794cf6b2d503e68",
+        "api": "getMyTopTracks",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "a7d9261c369a5cad",
+                "81746c3dd8f0dc89"
+            ]
+        ]
+    },
+    {
+        "id": "a7d9261c369a5cad",
+        "type": "change",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "myTopTracks",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02bff1951867de58",
+        "type": "filter-tracks",
+        "z": "39f07c67e5779d79",
+        "name": "",
+        "keyy": "myTopTracks",
+        "x": 890,
+        "y": 60,
+        "wires": [
+            [
+                "79fd7ba19d529fe5"
+            ]
+        ]
+    },
+    {
+        "id": "81746c3dd8f0dc89",
+        "type": "playlist-save",
+        "z": "39f07c67e5779d79",
+        "name": "My Top Tracks",
+        "auth": "f794cf6b2d503e68",
+        "playlist": "0eTV1yesKl8BqQOcFcQzNJ",
+        "x": 700,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f794cf6b2d503e68",
+        "type": "spotify-auth",
+        "name": "Spotify OAuth22",
+        "scope": "playlist-modify-public,playlist-modify-private,playlist-read-private,playlist-read-collaborative,user-read-recently-played,user-top-read,user-library-read"
+    }
+]

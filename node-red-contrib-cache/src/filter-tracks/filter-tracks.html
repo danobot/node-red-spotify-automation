@@ -5,21 +5,13 @@
         icon: "font-awesome/fa-filter",
         defaults: {
             name: { value: '' },
-            filterList: { value: '' },
+            keyy: { value: '' },
             
         },
         inputs: 1,
         outputs: 1,
-        label: 'Filter Tracks',
-        oneditprepare: function () {
-            const node = this;
-            const selectAPI = $('#node-input-context');
-            console.log(Object.keys(this.context().global))
-
-            // selectAPI.append(Object.keys(this.context().global).map(function(d) {
-            //     console.log(d)
-            //     return $('<option></option>').attr('value', d).attr('selected', node.filterList === d).text(d).wrap('<p/>').parent().html();
-            // }).join(""))
+        label: function () {
+            return this.name || `Filter out ${this.keyy}` || 'Filter Tracks'
         }
         
     });
@@ -30,10 +22,10 @@
         <input type="text" id="node-input-name">
     </div>
     <div class="form-row">
-        <label for="node-input-context"><i class="icon-tag"></i> Filter (Context Name)</label>
-        <select type="text" id="node-input-context">
-        </select>
+        <label for="node-input-keyy"><i class="icon-tag"></i> Context Key</label>
+        <input type="text" id="node-input-keyy">
     </div>
+    
 </script>
 <script type="text/x-red" data-help-name="filter-tracks">
     <h3>Inputs</h3>

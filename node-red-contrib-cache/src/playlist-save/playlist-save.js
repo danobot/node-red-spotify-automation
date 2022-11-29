@@ -29,7 +29,7 @@ module.exports = function (RED) {
 
         function handleInput(msg) {
             try {
-                let tracks = msg.payload.map(t => t.track.uri);
+                let tracks = msg.payload.map(t => t.track ? t.track.uri : t.uri);
                 console.log("Updating playlist: " + config.playlist);
                
                 // spotifyApi.getPlaylistTracks(param, {...p}).then(res => {
