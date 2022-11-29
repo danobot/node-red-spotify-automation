@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('use-context', {
+        category: 'function',
+        color: '#B8CDF8',
+        icon: "font-awesome/fa-file-text",
+        defaults: {
+            name: { value: '' },
+            key: { value: '' },
+        },
+        inputs: 1,
+        outputs: 1,
+
+        label: function () {
+            return this.name || 'Use Context';
+        }
+
+        
+    });
+</script>
+<script type="text/x-red" data-template-name="use-context">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-key"><i class="icon-tag"></i> Context Key</label>
+        <input type="text" id="node-input-key">
+    </div>
+</script>
+<script type="text/x-red" data-help-name="use-context">
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>config.key <span class="property-type">text</span></dt>
+        <dd>Global Context key to load</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Standard output
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">Object</span></dt>
+                 <dd>Value of global context at  `config.key`.</dd>
+             </dl>
+         </li>
+         
+     </ol>
+
+ </script>
