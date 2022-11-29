@@ -18,7 +18,7 @@ module.exports = function (RED) {
 
         node.on('input', function (msg) {
             if ((new Date().getTime() / 1000) > node.config.credentials.expireTime) {
-                refreshToken(node, spotifyApi).then(() => {
+                refreshToken(node, spotifyApi, RED, config).then(() => {
                     handleInput(msg);
                 });
             } else {
@@ -40,21 +40,34 @@ module.exports = function (RED) {
                 //     return res;
             
                 // })
-                paginated_fetch('getPlaylistTracks', config.playlist, 0, [], spotifyApi).then(data => {
-                    console.log("Playlist items; ", data.length)
-                    let pTracks = data.map(i=> i.track);
-                    console.log("Got playlist tracks", pTracks.length)
-                    return pTracks
-                }).then(data => {
-                    console.log(data.map(i=> i))
-                    // let pTracks = data.body.items;
-                    // console.log("Got playlist tracks", pTracks.length)
-                    return data
+                spotifyApi.replaceTracksInPlaylist(config.playlist, tracks).then(data => {
+                    console.log("Replaced (up to 100 tracks")
+                    node.send(msg);
                 }).catch(err => {
                     console.error(err)
                     msg.error = err;
                     node.send(msg);
                 });
+
+
+                // paginated_fetch('getPlaylistTracks', config.playlist, 0, [], spotifyApi).then(data => {
+                //     console.log("Playlist items; ", data[])
+                //     let pTracks = data.map(i=> i.id);
+                //     // console.log("Got playlist tracks", pTracks.length)
+                //     return spotifyApi.removeTracksFromPlaylistByPosition(config.playlist, pTracks )
+                // }).then(data => {
+                //     console.log("Deleting existing tracks: ", data)
+                //     // return spotifyApi.removeTracksFromPlaylist(config.playlist, data)
+                //     // let pTracks = data.body.items;
+                //     // console.log("Got playlist tracks", pTracks.length)
+                //     return data
+                // }).then(data => {
+                //     console.log("After deleting", data)
+                // }).catch(err => {
+                //     console.error(err)
+                //     msg.error = err;
+                //     node.send(msg);
+                // });
 
                 // spotifyApi.addTracksToPlaylist(config.playlist, tracks).then(data => {
                 //     msg.payload = data;

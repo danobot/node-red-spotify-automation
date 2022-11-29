@@ -1,5 +1,5 @@
 
-module.exports = function refreshToken(node, spotifyApi) {
+module.exports = function refreshToken(node, spotifyApi, RED, config) {
     return new Promise((resolve, reject) => {
         spotifyApi.refreshAccessToken()
         .then(data => {

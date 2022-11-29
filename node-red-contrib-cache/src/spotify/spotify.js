@@ -20,7 +20,7 @@ module.exports = function (RED) {
 
         node.on('input', function (msg) {
             if ((new Date().getTime() / 1000) > node.config.credentials.expireTime) {
-                refreshToken(node, spotifyApi).then(() => {
+                refreshToken(node, spotifyApi, RED, config).then(() => {
                     handleInput(msg);
                 });
             } else {

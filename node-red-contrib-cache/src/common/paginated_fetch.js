@@ -8,24 +8,20 @@ module.exports = function paginated_fetch(
   ) {
     // console.log(params)
     const p = {offset: page, limit: 50, ...p}
-    // console.log(p)
-    // if (typeof params == 'object') {
-    //     params = {...params}
-    // }
-    let fun = () => {
+    let apiFunction = () => {
       return api[endpoint](p)
     }
     if (typeof params == "object") {
-      fun = () => {
+      apiFunction = () => {
         return api[endpoint](...params, p)
       }
     }
     if (typeof params == "number" || typeof params == "string") {
-      fun = () => {
+      apiFunction = () => {
         return api[endpoint](params, p)
       }
     }
-    return fun().then(res => {
+    return apiFunction().then(res => {
         const data = res.body
         // console.log("res", res)
         const response = previousResponse.concat(res.body.items);
