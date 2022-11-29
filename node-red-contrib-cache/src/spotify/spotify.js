@@ -1,5 +1,8 @@
+
 module.exports = function (RED) {
     const SpotifyWebApi = require('spotify-web-api-node');
+    const paginated_fetch = require('../common/paginated_fetch');
+    const refreshToken = require('../common/refresh_token');
 
     function SpotifyNode(config) {
         RED.nodes.createNode(this, config);
@@ -17,7 +20,7 @@ module.exports = function (RED) {
 
         node.on('input', function (msg) {
             if ((new Date().getTime() / 1000) > node.config.credentials.expireTime) {
-                refreshToken().then(() => {
+                refreshToken(node, spotifyApi).then(() => {
                     handleInput(msg);
                 });
             } else {
@@ -32,7 +35,7 @@ module.exports = function (RED) {
                 // Reduce params to 1 less than the function expects, as the last param is the callback
                 params = params.slice(0, spotifyApi[node.api].length - 1);
                 console.log("Fetching data from Spotify")
-                paginated_fetch(node.api, params, 0, []).then(data => {
+                paginated_fetch(node.api, params, 0, [], spotifyApi).then(data => {
                     console.log(data.length)
                     msg.payload = data;
                     node.send(msg);
@@ -46,55 +49,8 @@ module.exports = function (RED) {
                 node.send(msg);
             }
         }
-        function paginated_fetch(
-            endpoint,
-            params,
-            page = 0,
-            previousResponse = []
-          ) {
-            // console.log(params)
-            const p = {offset: page, limit: 50}
-            // console.log(p)
-            return spotifyApi[endpoint]({...p}).then(res => {
-                const data = res.body
-                // console.log("res", res)
-                // console.log("offset", data.offset)
-                // console.log("total", data.total)
-                // console.log("limit", data.limit)
-                const response = previousResponse.concat(res.body.items);
-          
-                if (data.offset < data.total) {
-          
-                  return paginated_fetch(endpoint, params, page + data.limit, response);
-                }
-          
-                return response;
-
-            }).catch(err=>{
-                console.error(err)
-                node.send(err);
-            })
-            
-           
-          }
-        function refreshToken() {
-            return new Promise((resolve, reject) => {
-                spotifyApi.refreshAccessToken()
-                .then(data => {
-                    node.config.credentials.expireTime = data.body.expires_in + Math.floor(new Date().getTime() / 1000);
-                    node.config.credentials.accessToken = data.body.access_token;
-                    
-                    RED.nodes.addCredentials(config.auth, node.config.credentials);
-
-                    spotifyApi.setAccessToken(data.body.access_token);
-
-                    resolve();
-                })
-                .catch(error => {
-                    reject(error);
-                });
-            });
-        }
+        
+        
     }
     RED.nodes.registerType("spotify", SpotifyNode);
 

@@ -52,6 +52,7 @@
     "nodes": {
       "cache": "dist/cache/cache.js",
       "shuffle": "dist/shuffle/shuffle.js",
+      "playlist-save": "dist/playlist-save/playlist-save.js",
       "sample": "dist/sample/sample.js",
       "append-context": "dist/append-context/append-context.js",
       "use-context": "dist/use-context/use-context.js",

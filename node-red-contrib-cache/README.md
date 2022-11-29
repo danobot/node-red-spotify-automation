@@ -1,6 +1,9 @@
 Colour Scheme
 
 Memory cache Node-RED nodes
+
+API Scope
+playlist-modify-public,playlist-modify-private,playlist-read-private,playlist-read-collaborative,user-read-recently-played,user-top-read,user-library-read
 ===
 
 [![GitHub release](https://img.shields.io/github/release/CANDY-LINE/node-red-contrib-cache.svg)](https://github.com/CANDY-LINE/node-red-contrib-cache/releases/latest)
