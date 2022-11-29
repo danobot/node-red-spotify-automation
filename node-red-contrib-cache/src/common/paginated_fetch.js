@@ -6,7 +6,7 @@ module.exports = function paginated_fetch(
     previousResponse,
     api
   ) {
-    // console.log(params)
+    console.log(".")
     const p = {offset: page, limit: 50, ...p}
     let apiFunction = () => {
       return api[endpoint](p)

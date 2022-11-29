@@ -37,7 +37,7 @@ module.exports = function (RED) {
             
             })
             //console.log("Artist Map Length", Object.keys(artistMap).length)
-            console.log("Playlist length: ", inputList.length)
+            //console.log("Playlist length: ", inputList.length)
             const wasRepeated = (a) => {
                 let r = artistMap[a.id] <= ARTIST_SEPARATION
                 //console.log("\t\tGap too close?: " + artistMap[a.id] + "<=" + ARTIST_SEPARATION + "="+r)
@@ -52,19 +52,19 @@ module.exports = function (RED) {
                 let hasRepeated;
                 do {
                     currentTrack = inputList.pop();
-                    console.log("Current track: ", printTrack(currentTrack));
+                    //console.log("Current track: ", printTrack(currentTrack));
                     
                     hasRepeated = trackArtistWasRepeated(currentTrack)
                     
                     if (hasRepeated) { // track was played recently - skip this one and move on to next
-                        console.log("\t\tArtist repeated. Adding to buffer.Skipping to next.")
+                        //console.log("\t\tArtist repeated. Adding to buffer.Skipping to next.")
                         buffer.push(currentTrack)
-                        console.log("\t\tBuffer: ", buffer.map(t => printTrack(t)))
+                        //console.log("\t\tBuffer: ", buffer.map(t => printTrack(t)))
                         continue;
                     }
                     
                     
-                    console.log("\t\tAdding track to playlist.")
+                    //console.log("\t\tAdding track to playlist.")
                     outputList.push(currentTrack);
             
                     increase(artistMap); // increase all by 1
@@ -73,12 +73,12 @@ module.exports = function (RED) {
                     if (buffer.length > 0) {
                         
                         let peekBufferTrack = buffer.shift()
-                        console.log("\t\tMaintaining Buffer - Item: ", printTrack(peekBufferTrack))
+                        //console.log("\t\tMaintaining Buffer - Item: ", printTrack(peekBufferTrack))
                         if (!trackArtistWasRepeated(peekBufferTrack)) {
-                            console.log("\t\t\tAdding track to inputList (from buffer):", printTrack(peekBufferTrack))
+                            //console.log("\t\t\tAdding track to inputList (from buffer):", printTrack(peekBufferTrack))
                             inputList.push(peekBufferTrack)
                         } else {
-                            console.log("\t\t\tTrack not ready. Returning element to buffer.")
+                            //console.log("\t\t\tTrack not ready. Returning element to buffer.")
                             buffer.push(peekBufferTrack); // rotates the buffer
                         }
                             

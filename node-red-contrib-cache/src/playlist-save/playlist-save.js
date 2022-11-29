@@ -41,7 +41,7 @@ module.exports = function (RED) {
             
                 // })
                 spotifyApi.replaceTracksInPlaylist(config.playlist, tracks).then(data => {
-                    console.log("Replaced (up to 100 tracks")
+                    console.log("Replaced (up to 100 tracks)")
                     node.send(msg);
                 }).catch(err => {
                     console.error(err)

@@ -9,21 +9,21 @@ module.exports = function (RED) {
             let globalContext = this.context().global;
             
             let inputList  = msg.payload;
-            console.log("Input size: ", inputList.length)
-            console.log("filterList key: ",config.name)
+            this.log("Input size: ", inputList.length)
+            this.log("filter context key: ",config.name)
             let filterList = []
             if (globalContext.keys().includes(config.name)) {
                 filterList = globalContext.get(config.name, "file")
             }
-            console.log("filter size: ", filterList.length)
+            this.log("filter size: ", filterList.length)
             
             let filterIds = filterList.map(i => i.track.id)
-            //console.log("filterIds", filterIds.length)
+            //this.log("filterIds", filterIds.length)
 
             msg.payload = inputList.filter((item) => {
                 return !filterIds.includes(item.track.id); 
               })
-            console.log("output size: ", msg.payload.length)
+            this.log("output size: ", msg.payload.length)
             this.send(msg);
         });
        
