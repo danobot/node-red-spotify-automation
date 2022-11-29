@@ -4,23 +4,26 @@ module.exports = function (RED) {
 
     function FilterTrackNode(config) {
         RED.nodes.createNode(this, config);
-        var globalContext = this.context().global;
+        
         this.on('input', function (msg) {
-        console.log("context ", this.context().keys())
+            let globalContext = this.context().global;
             
             let inputList  = msg.payload;
-            console.log("Filter Input: ", inputList.length)
-            console.log("filterList context key: ",config.name)
-            let filterList = globalContext.get(config.name)
-            console.log("filterList: ", filterList.length)
+            console.log("Input size: ", inputList.length)
+            console.log("filterList key: ",config.name)
+            let filterList = []
+            if (globalContext.keys().includes(config.name)) {
+                filterList = globalContext.get(config.name, "file")
+            }
+            console.log("filter size: ", filterList.length)
             
             let filterIds = filterList.map(i => i.track.id)
-            console.log("filterIds", filterIds.length)
+            //console.log("filterIds", filterIds.length)
 
             msg.payload = inputList.filter((item) => {
                 return !filterIds.includes(item.track.id); 
               })
-
+            console.log("output size: ", msg.payload.length)
             this.send(msg);
         });
        

@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('sample', {
+        category: 'function',
+        color: '#B8CDF8',
+        icon: "font-awesome/fa-flask",
+        defaults: {
+            name: { value: '' },
+            count: { value: 0 },
+        },
+        inputs: 1,
+        outputs: 1,
+
+        label: function () {
+            return this.name || 'Sample';
+        }
+
+        
+    });
+</script>
+<script type="text/x-red" data-template-name="sample">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-count"><i class="icon-tag"></i> Context Key</label>
+        <input type="text" id="node-input-count">
+    </div>
+</script>
+<script type="text/x-red" data-help-name="sample">
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>count <span class="property-type">text</span></dt>
+        <dd>Number of samples to take from input</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Standard output
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">Object</span></dt>
+                 <dd>Randomly chosen samples</dd>
+             </dl>
+         </li>
+         
+     </ol>
+
+ </script>

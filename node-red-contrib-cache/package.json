@@ -52,7 +52,9 @@
     "nodes": {
       "cache": "dist/cache/cache.js",
       "shuffle": "dist/shuffle/shuffle.js",
+      "sample": "dist/sample/sample.js",
       "append-context": "dist/append-context/append-context.js",
+      "use-context": "dist/use-context/use-context.js",
       "filter-tracks": "dist/filter-tracks/filter-tracks.js",
       "artist-separation": "dist/artist-separation/artist-separation.js",
       "spotify": "dist/spotify/spotify.js",
