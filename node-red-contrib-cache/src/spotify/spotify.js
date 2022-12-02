@@ -32,6 +32,7 @@ module.exports = function (RED) {
         function handleInput(msg) {
             try {
                 let params = (msg.params) ? msg.params : [];
+                console.log("Params: ", params)
                 // Reduce params to 1 less than the function expects, as the last param is the callback
                 params = params.slice(0, spotifyApi[node.api].length - 1);
                 console.log("Fetching data from Spotify")

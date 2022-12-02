@@ -1,28 +1,19 @@
 {
-  "name": "node-red-contrib-cache",
-  "version": "2.0.3",
+  "name": "@danobot/node-red-contrib-spotify-automation",
+  "version": "1.0.0",
   "description": "Node-RED nodes for memory cache",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CANDY-LINE/node-red-contrib-cache.git"
-  },
-  "author": "Daisuke Baba <baba.daisuke@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/CANDY-LINE/node-red-contrib-cache/issues"
-  },
+ 
+  "author": "Daniel Mason",
   "scripts": {
     "build": "grunt build",
     "test": "grunt test",
     "clean": "grunt clean",
     "prepare": "grunt build"
   },
-  "homepage": "https://github.com/CANDY-LINE/node-red-contrib-cache#readme",
   "keywords": [
     "node-red",
-    "cache",
-    "CANDY RED",
-    "CANDY EGG"
+    "spotify"
   ],
   "devDependencies": {
     "babel": "^5.8.34",
@@ -49,9 +40,11 @@
     "source-map-support": "^0.4.2"
   },
   "node-red": {
+    "version": ">=2.0.0",
     "nodes": {
       "cache": "dist/cache/cache.js",
       "shuffle": "dist/shuffle/shuffle.js",
+      "first": "dist/first/first.js",
       "playlist-save": "dist/playlist-save/playlist-save.js",
       "sample": "dist/sample/sample.js",
       "append-context": "dist/append-context/append-context.js",

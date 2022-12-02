@@ -1,0 +1,45 @@
+<script type="text/javascript">
+    RED.nodes.registerType('first', {
+        category: 'function',
+        color: '#B8CDF8',
+        icon: "font-awesome/fa-list-ol",
+        defaults: {
+            count: { value: '' },
+        },
+        inputs: 1,
+        outputs: 1,
+        label: function () {
+            return this.name || `Select first ${this.count}` || 'Select';
+        }
+        
+    });
+</script>
+<script type="text/x-red" data-template-name="first">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-count"><i class="icon-tag"></i> Count</label>
+        <input type="text" id="node-input-count">
+    </div>
+</script>
+<script type="text/x-red" data-help-name="first">
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>count <span class="property-type">array</span></dt>
+        <dd>Number of elements to take from beginning of array.</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>Standard output
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">Array</span></dt>
+                 <dd>First n elemenets</dd>
+             </dl>
+         </li>
+         
+     </ol>
+
+ </script>
