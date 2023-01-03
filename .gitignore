@@ -1,8 +1,8 @@
-.idea
-.vscode
-yarn-debug.log*
-yarn-error.log*
-node_modules/
-*.tsbuildinfo
+node_modules
+*.map
+lib/*.js
+test/*.js
+*.tgz
+*.log
 dist
-yarn.lock
+.node-version
