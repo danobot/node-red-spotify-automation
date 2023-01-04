@@ -1,8 +1,8 @@
 <h1 align="center">
   <br>
-  <img src="https://github.com/danobot/notorious/raw/master/resources/icons/256x256.png" alt="Notorious" width="200">
+  <img src="https://raw.githubusercontent.com/danobot/node-red-spotify-automation/master/spotify.png" alt="Spotify Logo" width="200">
   <br>
-  Notorious
+  Node RED Spotify Automation
   <br>
 </h1>
 
@@ -31,7 +31,7 @@
   <a href="https://github.com/danobot/notorious/releases/latest">Download</a>
 </p>
 
-![Markdown Boilerplate](images/md_boilerplate.png)
+Not affiliated with Spotify.
 
 # Getting Started
 
